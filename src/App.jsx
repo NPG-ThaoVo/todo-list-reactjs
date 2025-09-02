@@ -4,16 +4,29 @@ import TodoHeader from "./components/TodoHeader";
 import TodoItem from "./components/TodoItem";
 
 function App() {
-  const todos = [
+  const [todos, setTodos] = useState([
     { id: 1, title: "Build a rocket ship", isDone: true },
     { id: 2, title: "Learn React components", isDone: true },
     { id: 3, title: "Design Neo-brutalism UI", isDone: true },
     { id: 4, title: "Master JavaScript props", isDone: false },
     { id: 5, title: "Deploy to the moon", isDone: false },
-  ];
+  ]);
 
   const completedCount = todos.filter((todo) => todo.isDone).length;
   const totalCount = todos.length;
+
+  // Hàm toggle task done
+  const handleToggle = (id) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, isDone: !todo.isDone };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
+
+  // Tính completed
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 p-6">
@@ -33,7 +46,12 @@ function App() {
         {/* Todo items container */}
         <div className="space-y-4">
           {todos.map((todo) => (
-            <TodoItem key={todo.id} title={todo.title} isDone={todo.isDone} />
+            <TodoItem
+              key={todo.id}
+              title={todo.title}
+              isDone={todo.isDone}
+              onToggle={() => handleToggle(todo.id)}
+            />
           ))}
         </div>
 

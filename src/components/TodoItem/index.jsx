@@ -1,4 +1,4 @@
-const TodoItem = ({ title, isDone }) => {
+const TodoItem = ({ title, isDone, onToggle }) => {
   const bgColor = isDone ? "bg-green-300" : "bg-orange-300";
   const textStyle = isDone ? "line-through text-gray-700" : "text-black";
   const icon = isDone ? (
@@ -24,6 +24,7 @@ const TodoItem = ({ title, isDone }) => {
   return (
     <div
       className={`${bgColor} border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-none p-4 transform hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200`}
+      onClick={onToggle}
     >
       <div className="flex items-center gap-4">
         <div className="text-3xl">{icon}</div>
