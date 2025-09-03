@@ -1,10 +1,26 @@
-## Requirements
+<!-- generate readme to me -->
 
-- The `App` component manages the list of tasks.
-- Create a `TodoItem` component that receives `title` and `isDone` as props.
-- Render the list of `TodoItem` components using `.map()`.
-- If `isDone === true`, display the text with a strikethrough style.
+# ToDoList
 
-**Optional:**
+This is a ToDoList App using React and TailwindCSS
 
-- Add a `TodoHeader` component that receives `total` and `completed` as props.
+## Features
+
+- Add Task
+- Edit Task
+- Delete Task
+- Toggle Task Done
+- Filter Task
+- Search Task
+
+## Installation
+
+```bash
+npm install
+```
+
+## Usage
+
+```bash
+npm run dev
+```

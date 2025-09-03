@@ -1,4 +1,5 @@
-const TodoItem = ({ title, isDone, onToggle }) => {
+import EditTaskModal from "../EditTaskModal";
+const TodoItem = ({ title, isDone, onToggle, onDelete, onEdit }) => {
   const bgColor = isDone ? "bg-green-300" : "bg-orange-300";
   const textStyle = isDone ? "line-through text-gray-700" : "text-black";
   const icon = isDone ? (
@@ -23,26 +24,39 @@ const TodoItem = ({ title, isDone, onToggle }) => {
   const shadowColor = isDone ? "rgba(34,197,94,0.5)" : "rgba(251,146,60,0.5)";
   return (
     <div
-      className={`${bgColor} border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-none p-4 transform hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200`}
-      onClick={onToggle}
+      className={`${bgColor} relative border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-none p-4 transform hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200`}
     >
       <div className="flex items-center gap-4">
-        <div className="text-3xl">{icon}</div>
-
+        <div className="text-3xl cursor-pointer" onClick={onToggle}>
+          {icon}
+        </div>
         <div className="flex-1">
           <p className={`text-xl font-bold ${textStyle}`}>{title}</p>
-
           {isDone && (
             <p className="text-sm font-bold text-green-700 mt-1">
               Task completed!
             </p>
           )}
-
           {!isDone && (
             <p className="text-sm font-bold text-orange-700 mt-1">
               In progress...
             </p>
           )}
+          <EditTaskModal initialTitle={title} onSave={onEdit} />
+          <button
+            onClick={onDelete}
+            className="w-auto cursor-pointer ml-4 px-3 py-1 border-3 border-black shadow-[2px_2px_0px_#000] rounded-lg absolute right-4 top-1/2 transform -translate-y-1/2"
+          >
+            <svg
+              width={"24px"}
+              height={"24px"}
+              fill="red"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 640 640"
+            >
+              <path d="M232.7 69.9L224 96L128 96C110.3 96 96 110.3 96 128C96 145.7 110.3 160 128 160L512 160C529.7 160 544 145.7 544 128C544 110.3 529.7 96 512 96L416 96L407.3 69.9C402.9 56.8 390.7 48 376.9 48L263.1 48C249.3 48 237.1 56.8 232.7 69.9zM512 208L128 208L149.1 531.1C150.7 556.4 171.7 576 197 576L443 576C468.3 576 489.3 556.4 490.9 531.1L512 208z" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
