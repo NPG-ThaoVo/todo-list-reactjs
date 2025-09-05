@@ -11,13 +11,17 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
 function EditTaskModal({ initialTitle, onSave }) {
+  // State lưu nội dung task (ban đầu = initialTitle, dùng cho edit/add)
   const [title, setTitle] = useState(initialTitle);
+
+  // State kiểm soát trạng thái mở/đóng modal
   const [open, setOpen] = useState(false);
 
+  // Hàm lưu task
   const handleSave = () => {
-    if (title.trim() === "") return;
-    onSave(title.trim());
-    setOpen(false);
+    if (title.trim() === "") return; // nếu rỗng thì không lưu
+    onSave(title.trim()); // gọi callback từ props để lưu task
+    setOpen(false); // đóng modal sau khi lưu
   };
 
   return (

@@ -1,5 +1,8 @@
 const TodoHeader = ({ total, completed }) => {
+  // Kiểm tra xem tất cả task đã hoàn thành chưa
   const isAllCompleted = completed === total;
+
+  // Tính % tiến độ (số task hoàn thành / tổng số task * 100)
   const progressPercentage = (completed / total) * 100;
   return (
     <div className="bg-cyan-300 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-none p-6 mb-6">

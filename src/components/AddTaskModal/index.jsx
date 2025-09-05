@@ -11,14 +11,18 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
 function AddTaskModal({ onAddTodo }) {
+  // State lưu nội dung input khi user gõ task mới
   const [title, setTitle] = useState("");
+
+  // State điều khiển modal (true = mở, false = đóng)
   const [open, setOpen] = useState(false);
 
+  // Hàm submit khi thêm task mới
   const handleSubmit = () => {
-    if (title.trim() === "") return;
-    onAddTodo(title);
-    setTitle("");
-    setOpen(false);
+    if (title.trim() === "") return;   // chặn khi user bấm save nhưng input rỗng
+    onAddTodo(title);                  // gọi callback từ cha để thêm task mới
+    setTitle("");                      // reset input về rỗng sau khi thêm
+    setOpen(false);                    // đóng modal lại
   };
 
   return (
